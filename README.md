@@ -306,3 +306,48 @@ select t5.games, t5.max_gold_country, t5.max_silver_country, t5.max_bronze_count
 from t5
 
 join t3 on t5.games = t3.games
+
+
+18. Which countries have never won gold medal but have won silver/bronze medals?
+
+With
+T1 As
+(select region,
+sum(case when Medal='Gold' then 1 else 0 end) as Gold,
+sum(case when Medal= 'Silver' then 1 else 0 end) as Silver,
+sum(case when Medal= 'Bronze' then 1 else 0 end) as Bronze
+from athlete_events as a join noc_region as b
+on a.noc=b.noc
+group by region)
+Select Region,Gold,Silver,Bronze From T1 Where Gold = 0 And (Silver > 0 or Bronze > 0)
+
+
+19. In which Sport/event, India has won highest medals?
+
+with t1 as (
+select b.region as region, a.sport, count(a.medal) as total_medals
+from athlete_events as a
+join noc_region as b
+on a.noc = b.noc 
+group by b.region,a.sport
+order by total_medals desc)
+select region, sport , total_medals as highest_medals 
+from t1 
+where region = 'india'
+limit 1
+
+(here if the highest is two sports with same medals which means use dense_rank)
+
+
+20. Break down all olympic games where India won medal for Hockey and how many medals in each olympic games?
+
+with t1 as (
+select b.region, a.games, a.sport, count(a.medal) as medal
+from athlete_events as a
+join noc_region as b
+on a.noc = b.noc
+group by b.region, a.games, a.sport
+order by a.games)
+select region, sport, games, medal
+from t1
+where region = 'india' and sport = 'hockey' and medal >=1
