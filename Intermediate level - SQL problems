@@ -27,6 +27,10 @@ select count(distinct customer_id) as total
 from delivery_order
 where extract(month from order_timestamp) = 1
 and extract(year from order_timestamp) = 2023
+
+
+
+
 )
 select round(count(hfc.customer_id) * 100 / tc.total,2) as ratio
 from high_frequency_customer hfc, total_customer tc
