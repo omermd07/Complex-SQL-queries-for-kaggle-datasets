@@ -1,4 +1,4 @@
-# Complex-SQL-queries-for-kaggle-datasets
+# SQL
 11.Fetch the top 5 athletes who have won the most gold medals.
 
 with t1 as 
