@@ -1,5 +1,6 @@
-# SQL
-11.Fetch the top 5 athletes who have won the most gold medals.
+ 
+'11.Fetch the top 5 athletes who have won the most gold medals.'
+
 
 with t1 as 
 
@@ -22,7 +23,7 @@ select * from t2
 where rank <=5
 
 
-12.Fetch the top 5 athletes who have won the most medals (gold/silver/bronze).
+'12.Fetch the top 5 athletes who have won the most medals (gold/silver/bronze).'
 
 with t1 as (select name, count(medal) as medals
 
@@ -43,7 +44,7 @@ select* from t2
 where rnk <=5
 
 
-13.Fetch the top 5 most successful countries in olympics. Success is defined by no of medals won.
+'13.Fetch the top 5 most successful countries in olympics. Success is defined by no of medals won.'
 
 with t1 as (select b.region, count(medal) as medals
 
@@ -68,7 +69,7 @@ select * from t2
 where rnk <=5;
 
 
-14. List down total gold, silver and bronze medals won by each country.
+'14. List down total gold, silver and bronze medals won by each country.'
 
 with t1 as (select b.region as country, a.medal, count(medal) as total_medals
 
@@ -105,7 +106,7 @@ select * from t2
 order by gold desc
 
 
-15.List down total gold, silver and bronze medals won by each country corresponding to each olympic games.
+'15.List down total gold, silver and bronze medals won by each country corresponding to each olympic games.'
 
 with t1 as (select b.region as country, a.medal, count(medal) as total_medals
 
@@ -154,7 +155,7 @@ on t2.country = t3.country
 order by t2.gold desc
 
 
-16.Identify which country won the most gold, most silver and most bronze medals in each olympic games.
+'16.Identify which country won the most gold, most silver and most bronze medals in each olympic games.'
 
 WITH t1 AS (
 
@@ -219,7 +220,7 @@ JOIN t3 ON t2.games = t3.games
 GROUP BY t2.games;
 
 
-17.Identify which country won the most gold, most silver, most bronze medals and the most medals in each olympic games.
+'17.Identify which country won the most gold, most silver, most bronze medals and the most medals in each olympic games.'
 
 WITH t1 AS (
 
@@ -308,7 +309,7 @@ from t5
 join t3 on t5.games = t3.games
 
 
-18. Which countries have never won gold medal but have won silver/bronze medals?
+'18. Which countries have never won gold medal but have won silver/bronze medals?'
 
 With
 T1 As
@@ -322,7 +323,7 @@ group by region)
 Select Region,Gold,Silver,Bronze From T1 Where Gold = 0 And (Silver > 0 or Bronze > 0)
 
 
-19. In which Sport/event, India has won highest medals?
+'19. In which Sport/event, India has won highest medals?'
 
 with t1 as (
 select b.region as region, a.sport, count(a.medal) as total_medals
@@ -339,7 +340,7 @@ limit 1
 (here if the highest is two sports with same medals which means use dense_rank)
 
 
-20. Break down all olympic games where India won medal for Hockey and how many medals in each olympic games?
+'20. Break down all olympic games where India won medal for Hockey and how many medals in each olympic games?'
 
 with t1 as (
 select b.region, a.games, a.sport, count(a.medal) as medal
