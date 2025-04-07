@@ -1,4 +1,5 @@
-'1.
+'These problems are primarily sourced from LinkedIn challenges, where many popular blogs have mentioned them as particularly challenging ones.
+1.
 Write a SQL query to calculate the % of high-frequency customers for January 2023. A high-frequency customer is defined as someone who 
 places more than 5 orders in a month. Your output should only include the % of these high-frequency customers.Round your results to 2 decimal points.
 
